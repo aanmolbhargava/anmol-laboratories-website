@@ -10,18 +10,17 @@ import {
   getSavings,
   formatPrice,
 } from "../../utils/calculateDiscount";
-
+import { useNavigate } from "react-router-dom";
 export default function ProductCard({ product }) {
   const whatsappURL = `https://wa.me/${company.whatsapp}?text=Hello, I'm interested in ${product.name}`;
 const discount = getDiscount(product.mrp, product.price);
 const savings = getSavings(product.mrp, product.price);
-console.log(product);
-console.log(product.mrp);
-console.log(product.price);
-console.log(discount);
+const navigate = useNavigate();
   return (
-    <article className="group overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl">
-
+    <article
+  onClick={() => navigate(`/products/${product.slug}`)}
+  className="group cursor-pointer overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
+>
       {/* Image */}
 
       <div className="relative overflow-hidden bg-gradient-to-br from-green-50 via-white to-cyan-50">
@@ -129,15 +128,7 @@ console.log(discount);
               <HiOutlineChatAlt2 size={18} />
             </a>
 
-            <Link
-              to={`/products/${product.slug}`}
-              className="flex items-center gap-2 rounded-xl bg-green-700 px-5 py-3 font-semibold text-white transition hover:bg-green-800"
-            >
-              Details
-
-              <HiOutlineArrowRight />
-
-            </Link>
+          
 
           </div>
 

@@ -13,6 +13,7 @@ import {
 import { useCart } from "../../context/CartContext";
 import QuantitySelector from "../cart/QuantitySelector";
 import Button from "../common/Button";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -26,10 +27,21 @@ const {
     decreaseQty,
     getQuantity,
 } = useCart();
+const navigate = useNavigate();
 
 const qty = getQuantity(product.id);
   return (
-    <article className="group overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl">
+    <article className="group cursor-pointer overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
+onClick={() => {
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: "auto",
+  });
+
+  navigate(`/products/${product.slug}`);
+}}
+>
 
       {/* Image */}
 
@@ -127,32 +139,30 @@ const qty = getQuantity(product.id);
 
 </div>
 
-    <div className="flex flex-wrap gap-2">
+ <div className="flex">
 
-{qty === 0 ? (
+  {qty === 0 ? (
 
-<Button
-    onClick={() => addToCart(product)}
->
-    Add to Cart
-</Button>
+    <Button
+      onClick={(e) => {
+        e.stopPropagation();
+        addToCart(product);
+      }}
+    >
+      Add
+    </Button>
 
-) : (
+  ) : (
 
-<QuantitySelector
-    qty={qty}
-    onIncrease={() => increaseQty(product.id)}
-    onDecrease={() => decreaseQty(product.id)}
-/>
+    <div onClick={(e) => e.stopPropagation()}>
+      <QuantitySelector
+        qty={qty}
+        onIncrease={() => increaseQty(product.id)}
+        onDecrease={() => decreaseQty(product.id)}
+      />
+    </div>
 
-)}
-
-  <Link
-    to={`/products/${product.slug}`}
-    className="rounded-xl bg-green-700 px-5 py-3 font-semibold text-white transition hover:bg-green-800"
-  >
-    View Product
-  </Link>
+  )}
 
 </div>
 

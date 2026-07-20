@@ -12,7 +12,11 @@ const products = [
 
     image: "/products/rumar-oil.png",
 
-    gallery: ["/products/rumar-oil.png"],
+gallery: [
+  "/products/rumar-oil.png",
+  "/products/rumar-oil-back.png",
+  "/products/rumar-oil-box.png"
+],
 
     shortDescription:
       "Herbal massage oil supporting joint comfort and mobility.",

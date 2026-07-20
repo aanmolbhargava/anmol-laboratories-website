@@ -13,32 +13,22 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <HelmetProvider>
       <BrowserRouter>
-
-
-
-
-<CartProvider>
-
-<App/>
-   <Toaster
-  position="bottom-right"
-  toastOptions={{
-    duration: 2500,
-    style: {
-      borderRadius: "16px",
-      background: "#166534",
-      color: "#fff",
-      fontWeight: "600",
-    },
-  }}
-/>
-</CartProvider>
-
-
-
-
-
+        <CartProvider>
+          <App />
+          <Toaster
+            position="top-right"
+            toastOptions={{
+              duration: 2500,
+              style: {
+                borderRadius: "16px",
+                background: "#166534",
+                color: "#fff",
+                fontWeight: "600",
+              },
+            }}
+          />
+        </CartProvider>
       </BrowserRouter>
     </HelmetProvider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );

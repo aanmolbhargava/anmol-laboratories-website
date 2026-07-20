@@ -126,7 +126,7 @@ export default function Footer() {
 
               <FaMapMarkerAlt />
 
-              {company.address}
+              {company.office.address}
 
             </div>
 

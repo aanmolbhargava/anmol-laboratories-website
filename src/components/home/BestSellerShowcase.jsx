@@ -78,61 +78,71 @@ useEffect(() => {
 
   {/* LEFT IMAGE */}
 
-  <AnimatePresence mode="wait">
-<div className="absolute left-10 top-10 z-20 rounded-full bg-gradient-to-r from-amber-400 to-orange-500 px-5 py-2 font-semibold text-white shadow-xl">
-  ⭐ Most Popular
-</div>
+ <AnimatePresence mode="wait">
+  <motion.div
+    key={product.id}
+    initial={{ opacity: 0, x: -60 }}
+    animate={{ opacity: 1, x: 0 }}
+    exit={{ opacity: 0, x: 60 }}
+    transition={{ duration: 0.45 }}
+    className="relative flex justify-center"
+  >
+    {/* Background Glow */}
+    <div className="absolute h-[520px] w-[520px] rounded-full bg-gradient-to-br from-green-200 to-cyan-100 blur-sm" />
+
+    {/* ⭐ Most Popular Badge */}
+    <div className="absolute left-6 top-6 z-30 rounded-full bg-gradient-to-r from-amber-400 to-orange-500 px-4 py-2 text-sm font-semibold text-white shadow-xl">
+      ⭐ Most Popular
+    </div>
+
+    {/* Product Image */}
+    <motion.img
+      src={product.image}
+      alt={product.name}
+      animate={{
+        y: [0, -15, 0],
+      }}
+      transition={{
+        repeat: Infinity,
+        duration: 4,
+        ease: "easeInOut",
+      }}
+      className="relative z-10 h-[500px] object-contain drop-shadow-2xl"
+    />
+
+    {/* Pack Badge */}
     <motion.div
-      key={product.id}
-      initial={{ opacity: 0, x: -60 }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: 60 }}
-      transition={{ duration: 0.45 }}
-      className="relative flex justify-center"
+      animate={{
+        y: [0, -6, 0],
+      }}
+      transition={{
+        repeat: Infinity,
+        duration: 3,
+      }}
+      className="absolute bottom-8 left-6 z-30 rounded-2xl bg-white px-5 py-4 shadow-2xl"
     >
+      <p className="text-xs uppercase tracking-wide text-gray-500">
+        Available Pack
+      </p>
 
-      <div className="absolute h-[520px] w-[520px] rounded-full bg-gradient-to-br from-green-200 to-cyan-100 blur-sm" />
-
-      <motion.img
-        src={product.image}
-        alt={product.name}
-        animate={{
-          y: [0, -15, 0],
-        }}
-        transition={{
-          repeat: Infinity,
-          duration: 4,
-          ease: "easeInOut",
-        }}
-        className="relative z-10 h-[500px] object-contain drop-shadow-2xl"
-      />
-
+      <p className="text-xl font-bold text-green-700">
+        {product.packSize}
+      </p>
     </motion.div>
-<motion.div
-  animate={{
-    y: [0, -8, 0],
-  }}
-  transition={{
-    repeat: Infinity,
-    duration: 3,
-  }}
-  className="absolute bottom-10 left-6 rounded-2xl bg-white px-6 py-4 shadow-2xl"
->
+  </motion.div>
+</AnimatePresence>
 
-  <p className="text-sm text-gray-500">
 
-    Available Pack
 
-  </p>
 
-  <p className="text-xl font-bold text-green-700">
 
-    {product.packSize}
 
-  </p>
 
-</motion.div>
-  </AnimatePresence>
+
+
+
+
+  
 
   {/* RIGHT CONTENT */}
 

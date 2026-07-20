@@ -35,38 +35,29 @@ export default function Hero() {
   const activeProduct = featuredProducts[activeIndex];
   console.log(activeIndex, activeProduct.name);
 
-  const whatsappURL = createWhatsAppLink(
-    company.whatsapp,
-    activeProduct
-  );
+  const whatsappURL = createWhatsAppLink(company.whatsapp, activeProduct);
   return (
     <>
       <section className="relative overflow-hidden bg-gradient-to-br from-white via-green-50 to-cyan-50 from-white via-[#F7FBF8] to-green-50">
-
         {/* Background Blur */}
 
-      <HeroBackground />
+        <HeroBackground />
         <div className="mx-auto grid min-h-[85vh] max-w-7xl items-center gap-20 px-6 py-20 lg:grid-cols-2">
-
           {/* LEFT */}
 
-<HeroContent
-    product={activeProduct}
-    whatsappURL={whatsappURL}
-/>
+          <HeroContent product={activeProduct} whatsappURL={whatsappURL} />
 
           {/* RIGHT */}
 
           <motion.div
-            initial={{ opacity: 0, scale: .8 }}
+            initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1 }}
             className="relative flex justify-center"
           >
-
             {/* Big Circle */}
 
-          <div className="absolute h-[560px] w-[560px] rounded-full border border-white/50 bg-white/20 backdrop-blur-xl shadow-[0_0_120px_rgba(16,185,129,0.25)]" />
+            <div className="absolute h-[560px] w-[560px] rounded-full border border-white/50 bg-white/20 backdrop-blur-xl shadow-[0_0_120px_rgba(16,185,129,0.25)]" />
             {/* Bottle */}
 
             <div className="relative flex justify-center">
@@ -79,15 +70,10 @@ export default function Hero() {
 
             {/* Floating Cards */}
 
-   <HeroFloatingCards />
-
+            <HeroFloatingCards />
           </motion.div>
-
         </div>
-
       </section>
-
     </>
-
   );
 }

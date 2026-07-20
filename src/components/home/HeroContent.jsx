@@ -10,11 +10,16 @@ export default function HeroContent({
   product,
   whatsappURL,
 }) {
+
+console.log(product);
+console.log(product.slug);
+
   return (
-    <motion.div
+<motion.div className="relative z-50"
       initial={{ opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: .8 }}
+      
     >
 
       <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-green-100 px-5 py-2 text-green-700">
@@ -62,6 +67,7 @@ export default function HeroContent({
         >
           View Details
         </Link>
+        
 
         <a
           href={whatsappURL}

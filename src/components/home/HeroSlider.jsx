@@ -25,15 +25,6 @@ export default function HeroSlider({
   return (
     <div className="relative flex items-center justify-center">
 
-      {/* Previous */}
-
-      <button
-        onClick={previous}
-        className="absolute left-0 z-30 rounded-full bg-white p-3 shadow-lg transition hover:bg-green-700 hover:text-white"
-      >
-        <HiChevronLeft size={24} />
-      </button>
-
       {/* Product Image */}
 
 <motion.div
@@ -74,14 +65,8 @@ export default function HeroSlider({
   </AnimatePresence>
 </motion.div>
 
-      {/* Next */}
-
-      <button
-        onClick={next}
-        className="absolute right-0 z-30 rounded-full bg-white p-3 shadow-lg transition hover:bg-green-700 hover:text-white"
-      >
-        <HiChevronRight size={24} />
-      </button>
+ 
+   
 
       {/* Indicators */}
 

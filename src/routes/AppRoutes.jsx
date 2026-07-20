@@ -9,6 +9,8 @@ import ProductDetails from "../pages/ProductDetails";
 import Manufacturing from "../pages/Manufacturing.jsx";
 import Contact from "../pages/Contact";
 import NotFound from "../pages/NotFound";
+import BusinessEnquiry from "../pages/BusinessEnquiry";
+import Cart from "../pages/Cart";
 
 const AppRoutes = () => {
   return (
@@ -28,10 +30,21 @@ const AppRoutes = () => {
         />
 
         <Route path="/contact" element={<Contact />} />
+
+        <Route
+    path="/business-enquiry"
+    element={<BusinessEnquiry />}
+/>
+<Route
+  path="/cart"
+  element={<Cart />}
+/>
       </Route>
 
       <Route path="*" element={<NotFound />} />
     </Routes>
+
+    
   );
 };
 

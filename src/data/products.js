@@ -7,7 +7,7 @@ const products = [
     slug: "rumar-oil",
 
     category: "Oil",
-
+    group: "Pain Relief",
     featured: true,
 
     image: "/products/rumar-oil.png",
@@ -22,6 +22,9 @@ const products = [
 
     indications: [],
     packSize: "60 ml",
+    mrp: 175,
+
+    price: 158,
 
     dosage:
       "Apply externally on the affected area or as directed by a healthcare professional.",
@@ -50,12 +53,12 @@ const products = [
   {
     id: 2,
 
-    name: "Anmol Cough-Ex Syrup",
+    name: "Cough-Ex Syrup",
 
     slug: "anmol-cough-ex-syrup",
 
     category: "Syrup",
-
+    group: "Respiratory Care",
     featured: true,
 
     image: "/products/cough-ex-syrup.png",
@@ -68,7 +71,9 @@ const products = [
       "Anmol Cough-Ex Syrup is an Ayurvedic herbal formulation that helps soothe the throat, relieve cough, reduce congestion and support healthy respiratory function.",
     indications: [],
     packSize: "100 ml",
+    mrp: 110,
 
+    price: 99,
     dosage:
       "1–2 teaspoonfuls two to three times daily or as directed by a healthcare professional.",
 
@@ -108,7 +113,7 @@ const products = [
     slug: "krush-stone-tablets",
 
     category: "Tablet",
-
+    group: "Kidney Care",
     featured: true,
 
     image: "/products/krush-stone-tablet.png",
@@ -122,7 +127,9 @@ const products = [
       "Krush-Stone Tablets are formulated with traditional Ayurvedic herbs that support urinary tract health and promote overall kidney wellness.",
     indications: [],
     packSize: "30 Tablets",
+    mrp: 140,
 
+    price: 126,
     dosage:
       "1–2 tablets twice daily after meals or as directed by a healthcare professional.",
 
@@ -155,7 +162,7 @@ const products = [
     slug: "high-glow-capsules",
 
     category: "Capsule",
-
+    group: "Beauty & Wellness",
     featured: true,
 
     image: "/products/highglow-capsule.png",
@@ -167,8 +174,10 @@ const products = [
     description:
       "High Glow Capsules combine Ayurvedic herbs known for supporting healthy skin, improving complexion and promoting natural radiance from within.",
     indications: [],
-    packSize: "30 Capsules",
+    packSize: "60 Capsules",
+    mrp: 299,
 
+    price: 269,
     dosage:
       "One capsule twice daily after meals or as directed by a healthcare professional.",
 
@@ -200,8 +209,8 @@ const products = [
 
     slug: "gynobless",
 
-    category: "Tablet",
-
+    category: "Syrup",
+    group: "Women's Wellness",
     featured: true,
 
     image: "/products/gynobless-syrup.png",
@@ -214,8 +223,10 @@ const products = [
     description:
       "Gynobless is formulated using traditional Ayurvedic herbs that support uterine wellness, menstrual health and overall female reproductive care.",
     indications: [],
-    packSize: "30 Tablets",
+    packSize: "450 ml",
+    mrp: 255,
 
+    price: 229,
     dosage:
       "1–2 tablets twice daily or as directed by a healthcare professional.",
 
@@ -248,7 +259,7 @@ const products = [
     slug: "gynocordial-capsules",
 
     category: "Capsule",
-
+    group: "Women's Wellness",
     featured: true,
 
     image: "/products/gynocordial-capsule.png",
@@ -261,8 +272,10 @@ const products = [
     description:
       "Gynocordial Capsules are based on traditional Ayurvedic formulations that support women's reproductive health, uterine wellness and overall vitality.",
     indications: [],
-    packSize: "30 Capsules",
+    packSize: "Strip of 15 Capsules",
+    mrp: 120,
 
+    price: 108,
     dosage:
       "One capsule twice daily or as directed by a healthcare professional.",
 
@@ -295,7 +308,7 @@ const products = [
     slug: "aartho-kare-tablets",
 
     category: "Tablet",
-
+    group: "Pain Relief",
     featured: true,
 
     image: "/products/aartho-kare-tablet.png",
@@ -307,8 +320,10 @@ const products = [
     description:
       "Aartho Kare Tablets combine traditional Ayurvedic herbs that support healthy joints, flexibility and comfortable movement.",
     indications: [],
-    packSize: "30 Tablets",
+    packSize: "40 Tablets",
+    mrp: 280,
 
+    price: 252,
     dosage:
       "1–2 tablets twice daily after meals or as directed by a healthcare professional.",
 

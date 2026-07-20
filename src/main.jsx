@@ -2,6 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
+import { CartProvider } from "./context/CartContext";
+import { Toaster } from "react-hot-toast";
 
 import App from "./App";
 
@@ -11,7 +13,31 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <HelmetProvider>
       <BrowserRouter>
-        <App />
+
+
+
+
+<CartProvider>
+
+<App/>
+   <Toaster
+  position="bottom-right"
+  toastOptions={{
+    duration: 2500,
+    style: {
+      borderRadius: "16px",
+      background: "#166534",
+      color: "#fff",
+      fontWeight: "600",
+    },
+  }}
+/>
+</CartProvider>
+
+
+
+
+
       </BrowserRouter>
     </HelmetProvider>
   </React.StrictMode>

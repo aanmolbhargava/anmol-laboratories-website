@@ -52,7 +52,9 @@ const positionClasses = {
 };
 
 export default function HeroFloatingCards() {
+
   return (
+      <div className="absolute inset-0 z-30 pointer-events-none">
     <>
       {cards.map((card, index) => {
         const Icon = card.icon;
@@ -101,5 +103,7 @@ export default function HeroFloatingCards() {
         );
       })}
     </>
+     </div>
   );
+ 
 }

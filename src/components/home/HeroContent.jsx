@@ -5,29 +5,21 @@ import {
   HiOutlineShieldCheck,
   HiArrowRight,
 } from "react-icons/hi";
+import HeroTrustCards from "./HeroTrustCards";
 
-export default function HeroContent({
-  product,
-  whatsappURL,
-}) {
-
-console.log(product);
-console.log(product.slug);
+export default function HeroContent({ product, whatsappURL }) {
+ 
 
   return (
-<motion.div className="relative z-50"
+    <motion.div
+      className="relative z-50"
       initial={{ opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: .8 }}
-      
+      transition={{ duration: 0.8 }}
     >
-
       <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-green-100 px-5 py-2 text-green-700">
-
         <HiOutlineBadgeCheck />
-
         Trusted Ayurvedic Brand
-
       </div>
 
       <motion.div
@@ -35,19 +27,13 @@ console.log(product.slug);
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
       >
-
         <span className="inline-block rounded-full bg-green-700 px-4 py-2 text-sm font-semibold text-white">
-
           {product.category}
-
         </span>
 
         <h1 className="mt-6 text-5xl font-black leading-tight text-gray-900 lg:text-7xl">
-
           {product.name}
-
         </h1>
-
       </motion.div>
 
       <motion.p
@@ -59,89 +45,57 @@ console.log(product.slug);
         {product.shortDescription}
       </motion.p>
 
-      <div className="mt-10 flex flex-wrap gap-5">
+      <div className="mt-8 rounded-3xl border border-green-100 bg-gradient-to-r from-green-50 via-white to-green-50 p-6 shadow-sm">
+        <div className="flex items-end gap-3">
+          <span className="text-4xl font-black text-green-700">
+            ₹{product.price}
+          </span>
 
+          <span className="mb-1 text-lg text-gray-400 line-through">
+            ₹{product.mrp}
+          </span>
+        </div>
+
+        <div className="mt-4 flex flex-wrap gap-3">
+          <span className="rounded-full bg-red-100 px-3 py-1 text-sm font-semibold text-red-600">
+            {Math.round(((product.mrp - product.price) / product.mrp) * 100)}%
+            OFF
+          </span>
+
+          <span className="rounded-full bg-green-100 px-3 py-1 text-sm font-semibold text-green-700">
+            Save ₹{product.mrp - product.price}
+          </span>
+
+          <span className="rounded-full bg-yellow-100 px-3 py-1 text-sm font-semibold text-yellow-700">
+            ⭐ Trusted Product
+          </span>
+        </div>
+      </div>
+
+      <div className="mt-10 flex flex-wrap gap-5">
         <Link
           to={`/products/${product.slug}`}
-          className="rounded-xl bg-green-700 px-7 py-4 font-semibold text-white transition hover:bg-green-800"
+          className="rounded-2xl bg-green-700 px-8 py-4 font-semibold text-white shadow-lg transition duration-300 hover:-translate-y-1 hover:bg-green-800 hover:shadow-xl"
         >
-          View Details
+          Explore Product
         </Link>
-        
 
         <a
           href={whatsappURL}
           target="_blank"
           rel="noreferrer"
-          className="rounded-xl border border-green-700 px-7 py-4 font-semibold text-green-700 transition hover:bg-green-700 hover:text-white"
+          className="rounded-2xl border-2 border-green-700 bg-white px-8 py-4 font-semibold text-green-700 transition duration-300 hover:bg-green-700 hover:text-white"
         >
-          WhatsApp Enquiry
+          Chat on WhatsApp
         </a>
-
       </div>
 
-      <div className="mt-8 inline-flex rounded-full bg-green-50 px-5 py-3 font-semibold text-green-700">
-
-        Pack Size : {product.packSize}
-
+      <div className="mt-8 inline-flex items-center rounded-full border border-green-200 bg-white px-6 py-3 font-semibold text-green-700 shadow-sm">
+        📦 Pack Size : &nbsp;
+        <span className="font-bold">{product.packSize}</span>
       </div>
 
-      <div className="mt-14 grid gap-6 sm:grid-cols-2">
-
-        <div className="flex gap-4">
-
-          <div className="rounded-xl bg-green-100 p-3 text-green-700">
-
-            <HiOutlineShieldCheck size={28} />
-
-          </div>
-
-          <div>
-
-            <h3 className="font-semibold">
-
-              Herbal Formulations
-
-            </h3>
-
-            <p className="text-gray-500">
-
-              Crafted with Ayurvedic ingredients
-
-            </p>
-
-          </div>
-
-        </div>
-
-        <div className="flex gap-4">
-
-          <div className="rounded-xl bg-cyan-100 p-3 text-cyan-700">
-
-            <HiArrowRight size={28} />
-
-          </div>
-
-          <div>
-
-            <h3 className="font-semibold">
-
-              Fast Enquiry
-
-            </h3>
-
-            <p className="text-gray-500">
-
-              Connect instantly on WhatsApp
-
-            </p>
-
-          </div>
-
-        </div>
-
-      </div>
-
+      <HeroTrustCards />
     </motion.div>
   );
 }

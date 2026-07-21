@@ -35,36 +35,40 @@ const cartCount = cart.reduce(
 
   return (
     <>
-      <header
-        className={`sticky top-0 z-50 transition-all duration-300 ${
-          scrolled
-            ? "bg-white/95 backdrop-blur shadow-md"
-            : "bg-white"
-        }`}
-      >
-        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
+ <header
+  className={`sticky top-0 z-50 border-b transition-all duration-500 ${
+    scrolled
+      ? "border-green-100 bg-white/80 backdrop-blur-xl shadow-lg"
+      : "border-transparent bg-white"
+  }`}
+>
+ <div
+  className={`mx-auto flex max-w-[1450px] items-center justify-between px-8 transition-all duration-300 ${
+    scrolled ? "h-16" : "h-20"
+  }`}
+>
 
-          <Link to="/">
-            <img
-              src="src/assets/Logo.png"
-              alt="Anmol Laboratories"
-              className="h-12 w-auto"
-            />
-          </Link>
 
-          <nav className="hidden items-center gap-8 lg:flex">
+          <motion.img
+  src="src/assets/Logo.png"
+  alt="Anmol Laboratories"
+  animate={{
+    scale: scrolled ? 0.9 : 1,
+  }}
+  transition={{ duration: 0.3 }}
+  className={`w-auto transition-all duration-300 ${
+    scrolled ? "h-10" : "h-12"
+  }`}
+/>
+
+        <nav className="hidden items-center gap-6 xl:gap-7 lg:flex">
 
             {navItems.map((item) => (
               <NavLink
                 key={item.path}
                 to={item.path}
-                className={({ isActive }) =>
-                  `relative font-semibold transition ${
-                    isActive
-                      ? "text-green-700"
-                      : "text-gray-700 hover:text-green-700"
-                  }`
-                }
+                className="relative font-semibold transition-all duration-300 hover:-translate-y-0.5"
+                
               >
                 {({ isActive }) => (
                   <>
@@ -78,50 +82,41 @@ const cartCount = cart.reduce(
             ))}
 <button
   onClick={() =>
-    window.dispatchEvent(new KeyboardEvent("keydown", {
-      key: "k",
-      ctrlKey: true,
-    }))
+    window.dispatchEvent(
+      new KeyboardEvent("keydown", {
+        key: "k",
+        ctrlKey: true,
+      })
+    )
   }
-  className="flex items-center gap-2 rounded-xl border border-gray-300 px-4 py-3 text-sm font-medium text-gray-600 transition hover:border-green-600 hover:text-green-700"
+  className="group flex items-center gap-3 rounded-full border border-gray-200 bg-gray-50 px-5 py-3 text-sm font-medium text-gray-600 transition-all duration-300 hover:border-green-500 hover:bg-white hover:text-green-700 hover:shadow-md"
 >
-  🔍 Search
+  <span className="text-base">🔍</span>
 
-  
+  <span>Search Products</span>
 </button>
 
 <Link
   to="/cart"
-  className="relative flex h-12 w-12 items-center justify-center rounded-xl border border-gray-300 bg-white transition hover:border-green-700 hover:text-green-700"
->
-  <HiOutlineShoppingCart className="text-2xl" />
+className="group relative flex items-center gap-3 rounded-full border border-gray-200 bg-white px-5 py-3 transition-all duration-300 hover:border-green-600 hover:shadow-md"
 
-  {cart.length > 0 && (
-    <span
-      className="
-        absolute
-        -right-2
-        -top-2
-        flex
-        h-6
-        w-6
-        items-center
-        justify-center
-        rounded-full
-        bg-red-600
-        text-xs
-        font-bold
-        text-white
-      "
-    >
-      {cart.length}
-    </span>
-  )}
+>
+ <HiOutlineShoppingCart className="text-2xl text-green-700" />
+
+<div className="hidden 2xl:block text-left">
+  <p className="text-xs text-gray-500">Cart</p>
+  <p className="text-sm font-bold">{cartCount} item{cartCount !== 1 ? "s" : ""}</p>
+</div>
+
+{cartCount > 0 && (
+  <span className="absolute -right-2 -top-2 flex h-6 w-6 items-center justify-center rounded-full bg-red-600 text-xs font-bold text-white">
+    {cartCount}
+  </span>
+)}
 </Link>
             <Link
               to="/contact"
-              className="rounded-xl bg-green-700 px-6 py-3 font-semibold text-white transition hover:bg-green-800"
-            >
+            className="rounded-full bg-gradient-to-r from-green-700 to-green-600 px-6 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl">
               Enquire Now
             </Link>
 
@@ -129,7 +124,7 @@ const cartCount = cart.reduce(
 
           <button
             onClick={() => setMobileOpen(true)}
-            className="lg:hidden"
+          className="rounded-xl p-2 transition hover:bg-green-50 lg:hidden"
           >
             <HiMenuAlt3 size={30} />
           </button>
@@ -192,9 +187,6 @@ const cartCount = cart.reduce(
             >
               Contact Us
             </Link>
-
-          
-
           </div>
         </div>
       </div>

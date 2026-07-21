@@ -6,6 +6,8 @@ import ManufacturingServices from "../components/business/ManufacturingServices"
 import BusinessForm from "../components/forms/BusinessForm";
 import HowWeWork from "../components/business/HowWeWork";
 import BusinessFAQ from "../components/business/BusinessFAQ";
+import BusinessCTA from "../components/business/BusinessCTA";
+
 
 
 
@@ -121,6 +123,8 @@ export default function BusinessEnquiry() {
     </section>
 
     <BusinessFAQ />
+
+    <BusinessCTA />
 </>
      
   );

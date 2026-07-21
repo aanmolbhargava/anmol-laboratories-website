@@ -7,13 +7,18 @@ import HealthCategories from "../components/home/HealthCategories";
 import WhyChooseUs from "../components/home/WhyChooseUs";
 import ManufacturingScope from "../components/home/ManufacturingScope";
 import BestSellerShowcase from "../components/home/BestSellerShowcase";
-
+import ManufacturingProcess from "../components/home/ManufacturingProcess";
+import BusinessTrust from "../components/home/BusinessTrust";
+import BusinessCTA from "../components/home/BusinessCTA";
 const Home = () => {
   return (
     <>
       <Hero />
       <BestSellerShowcase />
       <ManufacturingScope />
+      <ManufacturingProcess />
+      <BusinessTrust />
+      <BusinessCTA />
       <FeaturedProducts />
       <ProductTrustStrip />
       <HealthCategories />

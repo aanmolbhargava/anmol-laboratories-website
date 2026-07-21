@@ -1,17 +1,27 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { HiSearch } from "react-icons/hi";
 
 import products from "../data/products";
 import ProductCard from "../components/cards/ProductCard";
 import ProductFilters from "../components/products/ProductFilters";
+import { useSearchParams } from "react-router-dom";
 
 export default function Products() {
 
-  const [search, setSearch] = useState("");
+const [search, setSearch] = useState("");
 
-  const [selectedGroup, setSelectedGroup] = useState("All");
+const [searchParams, setSearchParams] = useSearchParams();
 
-  const [selectedForm, setSelectedForm] = useState("All");
+const categoryFromURL =
+  searchParams.get("category") || "All";
+
+const [selectedGroup, setSelectedGroup] = useState("All");
+
+const [selectedForm, setSelectedForm] = useState(categoryFromURL);
+
+useEffect(() => {
+  setSelectedForm(categoryFromURL);
+}, [categoryFromURL]);
 
   const filteredProducts = useMemo(() => {
 
@@ -78,12 +88,28 @@ export default function Products() {
 
         <div className="mt-10">
 
-          <ProductFilters
-            selectedGroup={selectedGroup}
-            setSelectedGroup={setSelectedGroup}
-            selectedForm={selectedForm}
-            setSelectedForm={setSelectedForm}
-          />
+       <ProductFilters
+  selectedGroup={selectedGroup}
+  setSelectedGroup={setSelectedGroup}
+  selectedForm={selectedForm}
+  setSelectedForm={(form) => {
+
+    setSelectedForm(form);
+
+    if (form === "All") {
+
+      setSearchParams({});
+
+    } else {
+
+      setSearchParams({
+        category: form,
+      });
+
+    }
+
+  }}
+/>
 
         </div>
 

@@ -12,7 +12,7 @@ export default function HeroContent({ product, whatsappURL }) {
 
   return (
     <motion.div
-      className="relative z-50"
+      className="relative"
       initial={{ opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   HiOutlineTrash,
@@ -16,6 +16,9 @@ import QuantitySelector from "../components/cart/QuantitySelector";
 import PageTransition from "../components/common/PageTransition";
 import { useState } from "react";
 import CheckoutConfirmModal from "../components/cart/CheckoutConfirmModal";
+import { useAuth } from "../context/AuthContext";
+import { createOrder } from "../services/orderService";
+import { toast } from "react-hot-toast";
 
 export default function Cart() {
   const {
@@ -29,11 +32,12 @@ export default function Cart() {
     total,
   } = useCart();
 
-  const [showConfirm, setShowConfirm] = useState(false);
-
+  const { currentUser } = useAuth();
+  const navigate = useNavigate();
   const [customerData, setCustomerData] = useState(null);
-
   const amountForFreeShipping = Math.max(499 - subtotal, 0);
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const [placingOrder, setPlacingOrder] = useState(false);
   // const clearCart = () => {
   //   setCart([]);
   //   toast.success("Cart cleared successfully 🗑️");
@@ -84,9 +88,62 @@ export default function Cart() {
   }
   const handleCheckout = (customer) => {
     setCustomerData(customer);
-    setShowConfirm(true);
+    setShowConfirmModal(true);
   };
 
+  const confirmCheckout = async () => {
+    console.log("confirmCheckout called");
+    if (!customerData) return;
+
+    try {
+      setPlacingOrder(true);
+
+      // Close Modal
+      setShowConfirmModal(false);
+
+      // Save Order to Firestore
+      const orderId = await createOrder({
+        customerId: currentUser.uid,
+        customer: customerData,
+        products: cart,
+        subtotal,
+        shipping,
+        total,
+      });
+
+      // Generate WhatsApp Message
+      const message = createOrderMessage(
+        orderId,
+        customerData,
+        cart,
+        subtotal,
+        shipping,
+        total,
+      );
+
+      // Open WhatsApp
+      window.open(
+        `https://wa.me/${company.whatsapp}?text=${encodeURIComponent(message)}`,
+        "_blank",
+      );
+
+      // Clear Cart
+      clearCart();
+
+      toast.success("Order placed successfully 🎉");
+
+      // Redirect (after 1 second)
+      setTimeout(() => {
+        navigate("/orders");
+      }, 1000);
+    } catch (error) {
+      console.error(error);
+
+      toast.error("Unable to place your order.");
+    } finally {
+      setPlacingOrder(false);
+    }
+  };
   const confirmOrder = () => {
     const message = createOrderMessage(
       customerData,
@@ -101,7 +158,7 @@ export default function Cart() {
       "_blank",
     );
 
-    setShowConfirm(false);
+    setShowConfirmModal(false);
   };
   return (
     <PageTransition>
@@ -376,9 +433,9 @@ export default function Cart() {
         </div>
       </div>
       <CheckoutConfirmModal
-        open={showConfirm}
-        onClose={() => setShowConfirm(false)}
-        onConfirm={confirmOrder}
+        open={showConfirmModal}
+        onClose={() => setShowConfirmModal(false)}
+        onConfirm={confirmCheckout}
         subtotal={subtotal}
         shipping={shipping}
         total={total}

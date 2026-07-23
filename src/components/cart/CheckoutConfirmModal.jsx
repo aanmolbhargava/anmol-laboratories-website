@@ -7,6 +7,7 @@ export default function CheckoutConfirmModal({
   subtotal,
   shipping,
   total,
+  loading,
 }) {
   return (
     <AnimatePresence>
@@ -59,12 +60,17 @@ export default function CheckoutConfirmModal({
               >
                 Cancel
               </button>
-
               <button
+                type="button"
+                disabled={loading}
                 onClick={onConfirm}
-                className="flex-1 rounded-xl bg-green-700 py-3 font-semibold text-white"
+                className={`flex-1 rounded-xl py-3 font-semibold text-white ${
+                  loading
+                    ? "cursor-not-allowed bg-gray-400"
+                    : "bg-green-700 hover:bg-green-800"
+                }`}
               >
-                Continue
+                {loading ? "Placing Order..." : "Place Order"}
               </button>
             </div>
           </motion.div>

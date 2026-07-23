@@ -62,11 +62,12 @@ const Home = () => {
         />
 
         <Hero />
-        <TrustBar />
-        <CompanyStats />
+        {/* <TrustBar /> */}
+
         {/* <BestSellerShowcase /> */}
         <BusinessTrust />
-        <ClientTrust />
+        <CompanyStats />
+        {/* <ClientTrust /> */}
         <ManufacturingScope />
 
         {/* <ManufacturingProcess /> */}

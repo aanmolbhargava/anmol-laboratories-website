@@ -25,7 +25,7 @@ const testimonials = [
   },
   {
     id: 4,
-    name: "Shyam Medical Agencies",
+    name: "Shyam Medical Agency",
     city: "Varanasi",
     rating: 5,
     review:

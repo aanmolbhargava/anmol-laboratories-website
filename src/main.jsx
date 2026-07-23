@@ -15,6 +15,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <BrowserRouter>
         <CartProvider>
           <App />
+
           <Toaster
             position="top-right"
             toastOptions={{

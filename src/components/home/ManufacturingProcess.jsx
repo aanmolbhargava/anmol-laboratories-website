@@ -14,24 +14,14 @@ const steps = [
     desc: "Premium quality herbal ingredients sourced from trusted suppliers.",
     color: "bg-green-100 text-green-700",
   },
-  {
-    icon: HiOutlineBeaker,
-    title: "Ingredient Testing",
-    desc: "Every ingredient is tested for purity and quality before production.",
-    color: "bg-cyan-100 text-cyan-700",
-  },
+
   {
     icon: HiOutlineOfficeBuilding,
     title: "Manufacturing",
     desc: "Prepared using authentic Ayurvedic formulations under GMP standards.",
     color: "bg-blue-100 text-blue-700",
   },
-  {
-    icon: HiOutlineClipboardCheck,
-    title: "Quality Check",
-    desc: "Each batch undergoes multiple quality inspections.",
-    color: "bg-amber-100 text-amber-700",
-  },
+
   {
     icon: HiOutlineCube,
     title: "Packaging",

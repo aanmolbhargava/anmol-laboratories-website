@@ -25,7 +25,7 @@ export function CartProvider({ children }) {
                 ...item,
                 qty: item.qty + 1,
               }
-            : item
+            : item,
         );
       }
 
@@ -37,9 +37,7 @@ export function CartProvider({ children }) {
         },
       ];
     });
-toast.success(
-  `${product.name} added successfully 🛒`
-);
+    toast.success(`${product.name} added successfully 🛒`);
   };
 
   const increaseQty = (id) => {
@@ -50,8 +48,8 @@ toast.success(
               ...item,
               qty: item.qty + 1,
             }
-          : item
-      )
+          : item,
+      ),
     );
   };
 
@@ -64,27 +62,22 @@ toast.success(
                 ...item,
                 qty: item.qty - 1,
               }
-            : item
+            : item,
         )
-        .filter((item) => item.qty > 0)
+        .filter((item) => item.qty > 0),
     );
   };
-const getQuantity = (id) => {
-  const item = cart.find((i) => i.id === id);
-  return item ? item.qty : 0;
-};
+  const getQuantity = (id) => {
+    const item = cart.find((i) => i.id === id);
+    return item ? item.qty : 0;
+  };
   const removeItem = (id) => {
-    setCart((prev) =>
-      prev.filter((item) => item.id !== id)
-    );
+    setCart((prev) => prev.filter((item) => item.id !== id));
   };
 
   const clearCart = () => setCart([]);
 
-  const subtotal = cart.reduce(
-    (sum, item) => sum + item.price * item.qty,
-    0
-  );
+  const subtotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
 
   const shipping = subtotal >= 499 ? 0 : 100;
 
@@ -94,22 +87,18 @@ const getQuantity = (id) => {
     <CartContext.Provider
       value={{
         cart,
+        cartCount: cart.reduce((sum, item) => sum + item.qty, 0),
 
-cartCount: cart.reduce(
-  (sum, item) => sum + item.qty,
-  0
-),
-  
-    cart,
-    addToCart,
-    removeItem,
-    increaseQty,
-    decreaseQty,
-    getQuantity,
-    subtotal,
-    shipping,
-    total,
+        addToCart,
+        removeItem,
+        increaseQty,
+        decreaseQty,
+        getQuantity,
+        clearCart,
 
+        subtotal,
+        shipping,
+        total,
       }}
     >
       {children}

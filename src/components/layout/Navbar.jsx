@@ -50,7 +50,7 @@ const cartCount = cart.reduce(
 
 
           <motion.img
-  src="src/assets/Logo.png"
+  src="/Logo.png"
   alt="Anmol Laboratories"
   animate={{
     scale: scrolled ? 0.9 : 1,

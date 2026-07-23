@@ -1,24 +1,15 @@
 import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function ProductTabs({ product }) {
-
-  const tabs = [
-    "Description",
-    "Benefits",
-    "Ingredients",
-    "Usage",
-    "FAQ",
-  ];
+  const tabs = ["Description", "Benefits", "Ingredients", "Usage", "FAQ"];
 
   const [active, setActive] = useState("Description");
 
   return (
     <section className="mt-16">
-
       <div className="flex flex-wrap gap-3 border-b">
-
         {tabs.map((tab) => (
-
           <button
             key={tab}
             onClick={() => setActive(tab)}
@@ -32,130 +23,101 @@ export default function ProductTabs({ product }) {
           >
             {tab}
           </button>
-
         ))}
-
       </div>
 
-      <div className="rounded-b-3xl rounded-tr-3xl border bg-white p-8 shadow-sm">
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={active}
+          initial={{
+            opacity: 0,
+            y: 20,
+          }}
+          animate={{
+            opacity: 1,
+            y: 0,
+          }}
+          exit={{
+            opacity: 0,
+            y: -20,
+          }}
+          transition={{
+            duration: 0.25,
+          }}
+          className="rounded-b-3xl rounded-tr-3xl border bg-white p-8 shadow-sm"
+        >
+          {active === "Description" && (
+            <p className="leading-8 text-gray-700">{product.description}</p>
+          )}
 
-        {active === "Description" && (
-          <p className="leading-8 text-gray-700">
-            {product.description}
-          </p>
-        )}
+          {active === "Benefits" && (
+            <div className="grid gap-4 md:grid-cols-2">
+              {(product.benefits || []).map((item) => (
+                <div
+                  key={item}
+                  className="flex items-start gap-4 rounded-2xl border bg-green-50 p-6"
+                >
+                  <div className="mt-1 text-green-700">✔</div>
 
-        {active === "Benefits" && (
-
-          <div className="grid gap-4 md:grid-cols-2">
-
-            {product.benefits.map((item) => (
-
-              <div
-                key={item}
-                className="rounded-2xl border bg-green-50 p-5"
-              >
-                ✅ {item}
-              </div>
-
-            ))}
-
-          </div>
-
-        )}
-
-        {active === "Ingredients" && (
-
-          <div className="grid gap-4 md:grid-cols-3">
-
-            {product.ingredients.map((item) => (
-
-              <div
-                key={item.name || item}
-                className="rounded-2xl border p-5 text-center"
-              >
-                <div className="text-3xl">
-                  🌿
+                  <div>{item}</div>
                 </div>
+              ))}
+            </div>
+          )}
 
-                <h3 className="mt-3 font-bold">
-                  {item.name || item}
-                </h3>
+          {active === "Ingredients" && (
+            <div className="grid gap-4 md:grid-cols-3">
+              {(product.ingredients || []).map((item) => (
+                <div
+                  key={item.name || item}
+                  className="rounded-2xl border p-5 text-center"
+                >
+                  <div className="text-3xl">🌿</div>
 
-                {item.benefit && (
-                  <p className="mt-2 text-sm text-gray-500">
-                    {item.benefit}
-                  </p>
-                )}
+                  <h3 className="mt-3 font-bold">{item.name || item}</h3>
+
+                  {item.benefit && (
+                    <p className="mt-2 text-sm text-gray-500">{item.benefit}</p>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+
+          {active === "Usage" && (
+            <div className="space-y-8">
+              <div>
+                <h3 className="text-xl font-bold">Dosage</h3>
+
+                <p className="mt-3 leading-8 text-gray-700">{product.dosage}</p>
               </div>
 
-            ))}
+              <div>
+                <h3 className="text-xl font-bold">Storage</h3>
 
-          </div>
-
-        )}
-
-        {active === "Usage" && (
-
-          <div className="space-y-8">
-
-            <div>
-
-              <h3 className="text-xl font-bold">
-                Dosage
-              </h3>
-
-              <p className="mt-3 leading-8 text-gray-700">
-                {product.dosage}
-              </p>
-
-            </div>
-
-            <div>
-
-              <h3 className="text-xl font-bold">
-                Storage
-              </h3>
-
-              <p className="mt-3 leading-8 text-gray-700">
-                {product.storage}
-              </p>
-
-            </div>
-
-          </div>
-
-        )}
-
-        {active === "FAQ" && (
-
-          <div className="space-y-5">
-
-            {product.faqs.map((faq) => (
-
-              <div
-                key={faq.question}
-                className="rounded-2xl border p-5"
-              >
-
-                <h3 className="font-bold">
-                  {faq.question}
-                </h3>
-
-                <p className="mt-3 text-gray-600">
-                  {faq.answer}
+                <p className="mt-3 leading-8 text-gray-700">
+                  {product.storage}
                 </p>
-
               </div>
+            </div>
+          )}
 
-            ))}
+          {active === "FAQ" && (
+            <div className="space-y-5">
+              {(product.faqs || []).map((faq) => (
+                <div
+                  key={faq.question}
+                  className="rounded-2xl border p-6 transition hover:border-green-600 hover:shadow-md"
+                >
+                  <h3 className="font-bold">{faq.question}</h3>
 
-          </div>
-
-        )}
-
-      </div>
-
+                  <p className="mt-3 text-gray-600">{faq.answer}</p>
+                </div>
+              ))}
+            </div>
+          )}
+        </motion.div>
+      </AnimatePresence>
     </section>
   );
 }

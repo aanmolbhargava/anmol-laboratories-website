@@ -1,172 +1,152 @@
-import { Link } from "react-router-dom";
 import {
-  FaWhatsapp,
-  FaEnvelope,
-  FaMapMarkerAlt,
-} from "react-icons/fa";
+  HiOutlinePhone,
+  HiOutlineMail,
+  HiOutlineLocationMarker,
+} from "react-icons/hi";
 
+import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+
+import { Link } from "react-router-dom";
 import company from "../../data/company";
 
 export default function Footer() {
-
   return (
+    <footer className="bg-[#0E3B2E] text-white">
+      {/* TOP */}
 
-    <footer className="bg-slate-900 text-white">
+      <div className="mx-auto max-w-7xl px-6 py-20">
+        <div className="grid gap-12 lg:grid-cols-4">
+          {/* Company */}
 
-      <div className="mx-auto grid max-w-7xl gap-12 px-6 py-16 md:grid-cols-4">
+          <div>
+            <img src="/logo.png" alt="Anmol Laboratories" className="h-16" />
 
-        {/* Company */}
+            <h3 className="mt-6 text-2xl font-bold">
+              Your Trusted Herbal Health Partner
+            </h3>
 
-        <div>
+            <p className="mt-5 leading-8 text-green-100">
+              Manufacturer of Ayurvedic & Herbal Formulations since 2001,
+              committed to quality, innovation and customer satisfaction.
+            </p>
 
-          <img
-            src="/logo.png"
-            alt="logo"
-            className="mb-6 h-14"
-          />
+            <div className="mt-8 flex gap-4">
+              <a
+                href="#"
+                className="flex h-11 w-11 items-center justify-center rounded-full bg-white/10 transition hover:bg-green-700"
+              >
+                <FaFacebookF />
+              </a>
 
-          <p className="leading-8 text-gray-300">
+              <a
+                href="#"
+                className="flex h-11 w-11 items-center justify-center rounded-full bg-white/10 transition hover:bg-green-700"
+              >
+                <FaInstagram />
+              </a>
 
-            Quality Ayurvedic formulations for healthcare,
-            wellness, third-party manufacturing and bulk supply.
-
-          </p>
-
-        </div>
-
-        {/* Products */}
-
-        <div>
-
-          <h3 className="mb-6 text-xl font-bold">
-
-            Products
-
-          </h3>
-
-          <div className="space-y-3">
-
-            <Link to="/products">All Products</Link><br/>
-
-            <Link to="/products">Syrups</Link><br/>
-
-            <Link to="/products">Capsules</Link><br/>
-
-            <Link to="/products">Tablets</Link><br/>
-
-            <Link to="/products">Oils</Link>
-
+              <a
+                href="#"
+                className="flex h-11 w-11 items-center justify-center rounded-full bg-white/10 transition hover:bg-green-700"
+              >
+                <FaLinkedinIn />
+              </a>
+            </div>
           </div>
 
-        </div>
+          {/* Quick Links */}
 
-        {/* Business */}
+          <div>
+            <h3 className="mb-6 text-xl font-bold">Quick Links</h3>
 
-        <div>
+            <div className="space-y-4">
+              <Link to="/">Home</Link>
+              <br />
 
-          <h3 className="mb-6 text-xl font-bold">
+              <Link to="/about">About</Link>
+              <br />
 
-            Business
+              <Link to="/products">Products</Link>
+              <br />
 
-          </h3>
+              <Link to="/business-enquiry">Business Enquiry</Link>
+              <br />
 
-          <div className="space-y-3">
-
-            <Link to="/business-enquiry">
-
-              Third Party Manufacturing
-
-            </Link><br/>
-
-            <Link to="/business-enquiry">
-
-              Bulk Orders
-
-            </Link><br/>
-
-            <Link to="/contact">
-
-              Contact
-
-            </Link>
-
+              <Link to="/contact">Contact</Link>
+            </div>
           </div>
 
-        </div>
+          {/* Categories */}
 
-        {/* Contact */}
+          <div>
+            <h3 className="mb-6 text-xl font-bold">Product Categories</h3>
 
-        <div>
+            <div className="space-y-4 text-green-100">
+              <p>Ayurvedic Oils</p>
 
-          <h3 className="mb-6 text-xl font-bold">
+              <p>Syrups</p>
 
-            Contact
+              <p>Capsules</p>
 
-          </h3>
+              <p>Tablets</p>
 
-          <div className="space-y-4">
+              <p>Powders</p>
 
-            <div className="flex gap-3">
-
-              <FaWhatsapp />
-
-              {company.phone}
-
+              <p>Ointments</p>
             </div>
-
-            <div className="flex gap-3">
-
-              <FaEnvelope />
-
-              {company.email}
-
-            </div>
-
-            <div className="flex gap-3">
-
-              <FaMapMarkerAlt />
-
-              {company.office.address}
-
-            </div>
-
           </div>
 
-        </div>
+          {/* Contact */}
 
+          <div>
+            <h3 className="mb-6 text-xl font-bold">Contact</h3>
+
+            <div className="space-y-6">
+              <div className="flex gap-4">
+                <HiOutlinePhone size={22} />
+
+                <span>{company.phone}</span>
+              </div>
+
+              <div className="flex gap-4">
+                <HiOutlineMail size={22} />
+
+                <span>{company.email}</span>
+              </div>
+
+              <div className="flex gap-4">
+                <HiOutlineLocationMarker size={22} />
+
+                <span>{company.office.address}</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
-     <div className="border-t border-slate-700">
+      {/* TRUST BAR */}
 
-  <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-6 py-6 text-center text-sm text-gray-400 md:flex-row">
+      <div className="border-y border-white/10">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-10 px-6 py-6 text-sm font-semibold text-green-100">
+          <span>🏭 GMP Certified</span>
 
-    <p>
-      © {new Date().getFullYear()} Anmol Laboratories.
-      All Rights Reserved.
-    </p>
+          <span>🌿 Herbal Formulations</span>
 
-    <p className="flex items-center gap-1">
+          <span>🚚 PAN India Delivery</span>
 
-      Crafted with
+          <span>⭐ Trusted Since 2001</span>
+        </div>
+      </div>
 
-      <span className="text-red-500 text-base">❤️</span>
+      {/* Bottom */}
 
-      by
+      <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 py-8 text-sm text-green-100 md:flex-row">
+        <p>
+          © {new Date().getFullYear()} Anmol Laboratories. All Rights Reserved.
+        </p>
 
-      <span className="font-semibold text-white">
-
-       IpsitAnmol
-
-      </span>
-
-    </p>
-
-  </div>
-
-</div>
-
+        <p>Curated with ❤️ by IpsitAnmol</p>
+      </div>
     </footer>
-
   );
-
 }

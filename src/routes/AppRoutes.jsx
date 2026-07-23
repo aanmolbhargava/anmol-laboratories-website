@@ -1,51 +1,36 @@
+import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import Layout from "../components/layout/Layout";
+import LoadingScreen from "../components/common/LoadingScreen";
 
-import Home from "../pages/Home";
-import About from "../pages/About";
-import Products from "../pages/Products";
-import ProductDetails from "../pages/ProductDetails";
-import Manufacturing from "../pages/Manufacturing.jsx";
-import Contact from "../pages/Contact";
-import NotFound from "../pages/NotFound";
-import BusinessEnquiry from "../pages/BusinessEnquiry";
-import Cart from "../pages/Cart";
+const Home = lazy(() => import("../pages/Home"));
+const About = lazy(() => import("../pages/About"));
+const Products = lazy(() => import("../pages/Products"));
+const ProductDetails = lazy(() => import("../pages/ProductDetails"));
+const Manufacturing = lazy(() => import("../pages/Manufacturing"));
+const Contact = lazy(() => import("../pages/Contact"));
+const BusinessEnquiry = lazy(() => import("../pages/BusinessEnquiry"));
+const Cart = lazy(() => import("../pages/Cart"));
+const NotFound = lazy(() => import("../pages/NotFound"));
 
-const AppRoutes = () => {
+export default function AppRoutes() {
   return (
-    <Routes>
-      <Route element={<Layout />}>
-        <Route path="/" element={<Home />} />
+    <Suspense fallback={<LoadingScreen />}>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/products/:slug" element={<ProductDetails />} />
+          <Route path="/manufacturing" element={<Manufacturing />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/business-enquiry" element={<BusinessEnquiry />} />
+          <Route path="/cart" element={<Cart />} />
+        </Route>
 
-        <Route path="/about" element={<About />} />
-
-        <Route path="/products" element={<Products />} />
-
-        <Route path="/products/:slug" element={<ProductDetails />} />
-
-        <Route
-          path="/manufacturing"
-          element={<Manufacturing />}
-        />
-
-        <Route path="/contact" element={<Contact />} />
-
-        <Route
-    path="/business-enquiry"
-    element={<BusinessEnquiry />}
-/>
-<Route
-  path="/cart"
-  element={<Cart />}
-/>
-      </Route>
-
-      <Route path="*" element={<NotFound />} />
-    </Routes>
-
-    
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Suspense>
   );
-};
-
-export default AppRoutes;
+}

@@ -8,31 +8,31 @@ import {
 
 const cards = [
   {
-    title: "7+ Products",
-    subtitle: "Ayurvedic Range",
+    title: "60+ Products",
+    subtitle: "Ayurvedic Portfolio",
     icon: HiOutlineCube,
     color: "green",
     position: "left-top",
   },
   {
-    title: "Quick Support",
-    subtitle: "WhatsApp Enquiry",
-    icon: HiOutlineChatAlt2,
-    color: "cyan",
+    title: "25+ Years",
+    subtitle: "Manufacturing Experience",
+    icon: HiOutlineSparkles,
+    color: "amber",
     position: "right-top",
   },
   {
-    title: "Herbal Formula",
-    subtitle: "Traditional Ayurveda",
-    icon: HiOutlineSparkles,
-    color: "amber",
+    title: "GMP Certified",
+    subtitle: "Quality Manufacturing",
+    icon: HiOutlineShieldCheck,
+    color: "emerald",
     position: "left-bottom",
   },
   {
-    title: "Trusted Quality",
-    subtitle: "Customer Focused",
-    icon: HiOutlineShieldCheck,
-    color: "emerald",
+    title: "PAN India",
+    subtitle: "Supply Network",
+    icon: HiOutlineChatAlt2,
+    color: "cyan",
     position: "right-bottom",
   },
 ];
@@ -52,58 +52,50 @@ const positionClasses = {
 };
 
 export default function HeroFloatingCards() {
-
   return (
-      <div className="absolute inset-0 z-30 pointer-events-none">
-    <>
-      {cards.map((card, index) => {
-        const Icon = card.icon;
+    <div className="absolute inset-0 z-30 pointer-events-none">
+      <>
+        {cards.map((card, index) => {
+          const Icon = card.icon;
 
-        return (
-          <motion.div
-            key={card.title}
-            initial={{
-              opacity: 0,
-              y: 40,
-            }}
-            animate={{
-              opacity: 1,
-              y: [0, -8, 0],
-            }}
-            transition={{
-              delay: index * 0.15,
-              duration: 3.5,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-            className={`absolute ${positionClasses[card.position]} hidden xl:flex`}
-          >
-            <div className="flex items-center gap-4 rounded-2xl border border-white/50 bg-white/80 px-5 py-4 shadow-2xl backdrop-blur-md">
+          return (
+            <motion.div
+              key={card.title}
+              initial={{
+                opacity: 0,
+                y: 40,
+              }}
+              animate={{
+                opacity: 1,
+                y: [0, -8, 0],
+              }}
+              transition={{
+                delay: index * 0.15,
+                duration: 3.5,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              className={`absolute ${positionClasses[card.position]} hidden xl:flex`}
+            >
+              <div className="flex items-center gap-4 rounded-3xl border border-white/50 bg-white/80 px-6 py-5 shadow-2xl backdrop-blur-md">
+                <div
+                  className={`flex h-14 w-14 items-center justify-center rounded-xl ${colorClasses[card.color]}`}
+                >
+                  <Icon size={26} />
+                </div>
 
-              <div
-                className={`flex h-12 w-12 items-center justify-center rounded-xl ${colorClasses[card.color]}`}
-              >
-                <Icon size={24} />
+                <div>
+                  <h4 className="text-lg font-bold text-gray-900">
+                    {card.title}
+                  </h4>
+
+                  <p className="text-sm text-gray-500">{card.subtitle}</p>
+                </div>
               </div>
-
-              <div>
-
-                <h4 className="font-bold text-gray-900">
-                  {card.title}
-                </h4>
-
-                <p className="text-sm text-gray-500">
-                  {card.subtitle}
-                </p>
-
-              </div>
-
-            </div>
-          </motion.div>
-        );
-      })}
-    </>
-     </div>
+            </motion.div>
+          );
+        })}
+      </>
+    </div>
   );
- 
 }

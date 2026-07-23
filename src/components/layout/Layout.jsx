@@ -1,34 +1,36 @@
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet, Link, useLocation } from "react-router-dom";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import TopBar from "./TopBar";
 import { AnimatePresence, motion } from "framer-motion";
-import { NavLink, Link } from "react-router-dom";
+import { useEffect } from "react";
 
 function PageContent() {
   const location = useLocation();
 
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "auto",
+    });
+  }, [location.pathname]);
+
   return (
     <motion.div
       key={location.pathname}
-      initial={{
-        opacity: 0,
-        y: 20,
-      }}
-      animate={{
-        opacity: 1,
-        y: 0,
-      }}
-      exit={{
-        opacity: 0,
-        y: -20,
-      }}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
       transition={{
         duration: 0.45,
         ease: "easeOut",
       }}
     >
       <Outlet />
+
+      {/* Mobile Bottom Navigation */}
+
       <div className="fixed bottom-0 left-0 right-0 z-50 border-t bg-white shadow-2xl lg:hidden">
         <div className="grid grid-cols-4">
           <Link
@@ -68,7 +70,9 @@ function PageContent() {
   );
 }
 
-const Layout = () => {
+export default function Layout() {
+  const location = useLocation();
+
   return (
     <div className="min-h-screen flex flex-col bg-[#F8FBF8]">
       <TopBar />
@@ -77,13 +81,11 @@ const Layout = () => {
 
       <main className="flex-1">
         <AnimatePresence mode="wait">
-          <PageContent />
+          <PageContent key={location.pathname} />
         </AnimatePresence>
       </main>
 
       <Footer />
     </div>
   );
-};
-
-export default Layout;
+}

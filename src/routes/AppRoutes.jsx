@@ -8,7 +8,6 @@ const Home = lazy(() => import("../pages/Home"));
 const About = lazy(() => import("../pages/About"));
 const Products = lazy(() => import("../pages/Products"));
 const ProductDetails = lazy(() => import("../pages/ProductDetails"));
-const Manufacturing = lazy(() => import("../pages/Manufacturing"));
 const Contact = lazy(() => import("../pages/Contact"));
 const BusinessEnquiry = lazy(() => import("../pages/BusinessEnquiry"));
 const Cart = lazy(() => import("../pages/Cart"));
@@ -23,7 +22,6 @@ export default function AppRoutes() {
           <Route path="/about" element={<About />} />
           <Route path="/products" element={<Products />} />
           <Route path="/products/:slug" element={<ProductDetails />} />
-          <Route path="/manufacturing" element={<Manufacturing />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/business-enquiry" element={<BusinessEnquiry />} />
           <Route path="/cart" element={<Cart />} />

@@ -17,6 +17,7 @@ import PageTransition from "../components/common/PageTransition";
 import StructuredData from "../components/common/StructuredData";
 import ScrollTop from "../components/common/ScrollTop";
 import FloatingWhatsapp from "../components/common/FloatingWhatsapp";
+import BusinessModels from "../components/home/BusinessModels";
 
 import BusinessCTA from "../components/home/BusinessCTA";
 const Home = () => {
@@ -61,19 +62,23 @@ const Home = () => {
         />
 
         <Hero />
-        <BestSellerShowcase />
+        <TrustBar />
+        <CompanyStats />
+        {/* <BestSellerShowcase /> */}
         <BusinessTrust />
         <ClientTrust />
         <ManufacturingScope />
 
-        <ManufacturingProcess />
-        <CompanyStats />
+        {/* <ManufacturingProcess /> */}
+        <BusinessModels />
+
         <Testimonials />
         <BusinessCTA />
+        <WhyChooseUs />
         <FeaturedProducts />
         <ProductTrustStrip />
-        <HealthCategories />
-        <WhyChooseUs />
+        {/* <HealthCategories /> */}
+
         <ScrollTop />
         <FloatingWhatsapp />
       </PageTransition>

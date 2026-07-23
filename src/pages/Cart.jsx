@@ -14,6 +14,8 @@ import company from "../data/company";
 import { createOrderMessage } from "../utils/createOrderMessage";
 import QuantitySelector from "../components/cart/QuantitySelector";
 import PageTransition from "../components/common/PageTransition";
+import { useState } from "react";
+import CheckoutConfirmModal from "../components/cart/CheckoutConfirmModal";
 
 export default function Cart() {
   const {
@@ -26,6 +28,10 @@ export default function Cart() {
     shipping,
     total,
   } = useCart();
+
+  const [showConfirm, setShowConfirm] = useState(false);
+
+  const [customerData, setCustomerData] = useState(null);
 
   const amountForFreeShipping = Math.max(499 - subtotal, 0);
   // const clearCart = () => {
@@ -77,31 +83,26 @@ export default function Cart() {
     );
   }
   const handleCheckout = (customer) => {
-    if (subtotal < 499) {
-      const proceed = window.confirm(
-        "Orders below ₹499 will incur ₹100 shipping charges.\n\nDo you want to continue?",
-      );
+    setCustomerData(customer);
+    setShowConfirm(true);
+  };
 
-      if (!proceed) return;
-    }
-
-    const confirmOrder = window.confirm(
-      "Proceed to WhatsApp to place your order?",
-    );
-
-    if (!confirmOrder) return;
-
+  const confirmOrder = () => {
     const message = createOrderMessage(
-      customer,
+      customerData,
       cart,
       subtotal,
       shipping,
       total,
     );
 
-    window.open(`https://wa.me/${company.whatsapp}?text=${message}`, "_blank");
-  };
+    window.open(
+      `https://wa.me/${company.whatsapp}?text=${encodeURIComponent(message)}`,
+      "_blank",
+    );
 
+    setShowConfirm(false);
+  };
   return (
     <PageTransition>
       <div className="mx-auto max-w-7xl px-6 py-16">
@@ -374,6 +375,14 @@ export default function Cart() {
           </div>
         </div>
       </div>
+      <CheckoutConfirmModal
+        open={showConfirm}
+        onClose={() => setShowConfirm(false)}
+        onConfirm={confirmOrder}
+        subtotal={subtotal}
+        shipping={shipping}
+        total={total}
+      />
     </PageTransition>
   );
 }

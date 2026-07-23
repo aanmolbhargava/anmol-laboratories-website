@@ -1,41 +1,45 @@
 import generateOrderId from "./orderId";
 
-export function createOrderMessage(
-  customer,
-  cart,
-  subtotal,
-  shipping,
-  total
-) {
-  let message =
-`🟢 *NEW ORDER RECEIVED*
+export function createOrderMessage(customer, cart, subtotal, shipping, total) {
+  const orderId = generateOrderId();
+
+  let message = `🟢 *NEW ORDER RECEIVED*
 
 🆔 Order ID : ${orderId}
 
 ━━━━━━━━━━━━━━
 
-👤 Customer
+👤 *Customer Details*
 
-${customer.name}
+Name : ${customer.name}
 
-📱 ${customer.whatsapp}
+WhatsApp : ${customer.whatsapp}
 
-📍 ${customer.address}
+Address :
+${customer.address}
 
-${customer.city}
+${customer.city}, ${customer.state}
 
-${customer.state}
+Pincode : ${customer.pincode}
 
-${customer.pincode}
+${
+  customer.notes
+    ? `Notes : ${customer.notes}
+
+`
+    : ""
+}
 
 ━━━━━━━━━━━━━━
 
-🛒 PRODUCTS
-
+🛒 *ORDER ITEMS*
 
 `;
-message +=
-`• ${item.name}
+
+  cart.forEach((item, index) => {
+    message += `${index + 1}. ${item.name}
+
+Pack : ${item.packSize}
 
 Qty : ${item.qty}
 
@@ -46,18 +50,21 @@ Total : ₹${item.qty * item.price}
 ━━━━━━━━━━━━━━
 
 `;
+  });
 
-message +=
-`Subtotal : ₹${subtotal}
+  message += `💰 *ORDER SUMMARY*
 
-Shipping : ${shipping===0?"FREE":"₹100"}
+Subtotal : ₹${subtotal}
+
+Shipping : ${shipping === 0 ? "FREE" : `₹${shipping}`}
 
 Grand Total : ₹${total}
 
 ━━━━━━━━━━━━━━
 
-Thank you for choosing
-Anmol Laboratories 🌿`;
+🌿 Thank you for choosing
 
-  return encodeURIComponent(message);
+*Anmol Laboratories*`;
+
+  return message;
 }
